@@ -28,9 +28,15 @@ class SchoolClassesController < ApplicationController
       #query object by id
       @school_class = SchoolClass.find(params[:id])
       #update that object
-      @school_class.update(params.require(:school_class).permit(:title, :room_number))
+      @school_class.update(school_class_params)
       #reroute to show page
       redirect_to school_class_path(@school_class)
     end
+
+    private
+    def school_class_params
+      params.require(:school_class).permit(:title, :room_number)
+    end
+
 
 end
